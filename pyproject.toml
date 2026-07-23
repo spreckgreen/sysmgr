@@ -1,0 +1,33 @@
+[build-system]
+requires=["setuptools>=69","wheel"]
+build-backend="setuptools.build_meta"
+
+[project]
+name="sysmgr"
+version="0.1.0"
+description="Linux System Management Toolkit"
+readme="README.md"
+requires-python=">=3.11"
+dependencies=[
+  "typer>=0.16",
+  "rich>=14",
+  "psutil>=5.9"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.0",
+    "black>=25.0",
+    "ruff>=0.12",
+    "mypy>=1.17",
+    "pre-commit>=4.3"
+]
+
+[project.scripts]
+sysmgr="sysmgr.cli:app"
+
+[tool.setuptools]
+package-dir={""="src"}
+
+[tool.setuptools.packages.find]
+where=["src"]
