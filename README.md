@@ -15,4 +15,3 @@ sysmgr version
 
 sysmgr scan
 ```
-

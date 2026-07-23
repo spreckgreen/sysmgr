@@ -1,9 +1,10 @@
-import platform,socket,psutil
+from .inventory.scanner import collect
+from .report.json_export import export
+
+
 def collect_system_info():
-    return {
-      "hostname":socket.gethostname(),
-      "os":platform.system(),
-      "kernel":platform.release(),
-      "cpu_logical":psutil.cpu_count(),
-      "memory_gb":round(psutil.virtual_memory().total/1024**3,2),
-    }
+    inventory = collect()
+
+    export(inventory)
+
+    return inventory.to_dict()
