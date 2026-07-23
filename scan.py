@@ -1,13 +1,11 @@
-import json
-
 from .inventory.scanner import collect
+from .report.json_export import export
 
 
 def collect_system_info():
 
-    data = collect()
+    inventory = collect()
 
-    with open("report.json", "w") as fp:
-        json.dump(data, fp, indent=4)
+    export(inventory)
 
-    return data
+    return inventory.to_dict()

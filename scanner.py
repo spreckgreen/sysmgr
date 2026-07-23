@@ -1,11 +1,18 @@
+from .models import Inventory
 from . import cpu
 from . import memory
 from . import osinfo
 
 
-def collect():
-    return {
-        "system": osinfo.collect(),
-        "cpu": cpu.collect(),
-        "memory": memory.collect(),
-    }
+def collect() -> Inventory:
+
+    return Inventory(
+        system=osinfo.collect(),
+        cpu=cpu.collect(),
+        memory=memory.collect(),
+        pci=[],
+        usb=[],
+        network=[],
+        bluetooth=[],
+        storage=[],
+    )
